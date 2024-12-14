@@ -1,2 +1,2 @@
 # go-ddd-demo
-Go实践DDD
+Go实践DDD项目
