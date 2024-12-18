@@ -1,8 +1,8 @@
 package repository_impl
 
 import (
+	"DDD/go-ddd-demo/go-task/task_module/domain/model/entity"
 	"context"
-	"github.com/Peterliang233/ddd/go-task/domain/model/entity"
 )
 
 type DefaultTaskRepositoryImpl struct{}

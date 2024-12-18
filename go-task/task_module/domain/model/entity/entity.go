@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/Peterliang233/ddd/go-task/domain/model/vo"
+	"DDD/go-ddd-demo/go-task/task_module/domain/model/vo"
 )
 
 type TaskEntity struct {

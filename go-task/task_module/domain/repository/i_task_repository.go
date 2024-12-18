@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"DDD/go-ddd-demo/go-task/task_module/domain/model/entity"
 	"context"
-	"github.com/Peterliang233/ddd/go-task/domain/model/entity"
 )
 
 type ITaskRepository interface {

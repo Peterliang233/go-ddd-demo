@@ -1,4 +1,4 @@
-namespace go example.task.base
+namespace go example.go.task
 
 struct BaseResp {
     1: string code

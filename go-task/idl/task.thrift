@@ -1,4 +1,4 @@
-namespace go example.task.item
+namespace go example.go.task
 
 include "base.thrift"
 
@@ -26,6 +26,20 @@ struct GetTaskResp {
     255: base.BaseResp baseResp
 }
 
-service ItemService{
+struct CreateTaskReq {
+    1: string name
+    2: string desc
+    3: optional bool is_all
+    4: TaskPeople people
+}
+
+struct CreateTaskResp {
+    1: i64 task_id
+
+    255: base.BaseResp baseResp
+}
+
+service TaskService {
     GetTaskResp GetTask(1: GetTaskReq req)
+    CreateTaskResp CreateTask(1: CreateTaskReq req)
 }
