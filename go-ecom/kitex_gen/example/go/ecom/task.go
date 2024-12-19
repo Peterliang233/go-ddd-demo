@@ -12,7 +12,7 @@ type TaskItem struct {
 	Id          int64       `thrift:"id,1" frugal:"1,default,i64" json:"id"`
 	Name        string      `thrift:"name,2" frugal:"2,default,string" json:"name"`
 	Description string      `thrift:"description,3" frugal:"3,default,string" json:"description"`
-	IsAll       *bool       `thrift:"is_all,4,optional" frugal:"4,optional,bool" json:"is_all,omitempty"`
+	IsAll       bool        `thrift:"is_all,4" frugal:"4,default,bool" json:"is_all"`
 	Target      *TaskPeople `thrift:"target,5" frugal:"5,default,TaskPeople" json:"target"`
 }
 
@@ -35,13 +35,8 @@ func (p *TaskItem) GetDescription() (v string) {
 	return p.Description
 }
 
-var TaskItem_IsAll_DEFAULT bool
-
 func (p *TaskItem) GetIsAll() (v bool) {
-	if !p.IsSetIsAll() {
-		return TaskItem_IsAll_DEFAULT
-	}
-	return *p.IsAll
+	return p.IsAll
 }
 
 var TaskItem_Target_DEFAULT *TaskPeople
@@ -61,7 +56,7 @@ func (p *TaskItem) SetName(val string) {
 func (p *TaskItem) SetDescription(val string) {
 	p.Description = val
 }
-func (p *TaskItem) SetIsAll(val *bool) {
+func (p *TaskItem) SetIsAll(val bool) {
 	p.IsAll = val
 }
 func (p *TaskItem) SetTarget(val *TaskPeople) {
@@ -74,10 +69,6 @@ var fieldIDToName_TaskItem = map[int16]string{
 	3: "description",
 	4: "is_all",
 	5: "target",
-}
-
-func (p *TaskItem) IsSetIsAll() bool {
-	return p.IsAll != nil
 }
 
 func (p *TaskItem) IsSetTarget() bool {
@@ -207,11 +198,11 @@ func (p *TaskItem) ReadField3(iprot thrift.TProtocol) error {
 }
 func (p *TaskItem) ReadField4(iprot thrift.TProtocol) error {
 
-	var _field *bool
+	var _field bool
 	if v, err := iprot.ReadBool(); err != nil {
 		return err
 	} else {
-		_field = &v
+		_field = v
 	}
 	p.IsAll = _field
 	return nil
@@ -322,16 +313,14 @@ WriteFieldEndError:
 }
 
 func (p *TaskItem) writeField4(oprot thrift.TProtocol) (err error) {
-	if p.IsSetIsAll() {
-		if err = oprot.WriteFieldBegin("is_all", thrift.BOOL, 4); err != nil {
-			goto WriteFieldBeginError
-		}
-		if err := oprot.WriteBool(*p.IsAll); err != nil {
-			return err
-		}
-		if err = oprot.WriteFieldEnd(); err != nil {
-			goto WriteFieldEndError
-		}
+	if err = oprot.WriteFieldBegin("is_all", thrift.BOOL, 4); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteBool(p.IsAll); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
 	}
 	return nil
 WriteFieldBeginError:
@@ -410,14 +399,9 @@ func (p *TaskItem) Field3DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *TaskItem) Field4DeepEqual(src *bool) bool {
+func (p *TaskItem) Field4DeepEqual(src bool) bool {
 
-	if p.IsAll == src {
-		return true
-	} else if p.IsAll == nil || src == nil {
-		return false
-	}
-	if *p.IsAll != *src {
+	if p.IsAll != src {
 		return false
 	}
 	return true
@@ -1122,7 +1106,7 @@ func (p *GetTaskResp) Field255DeepEqual(src *BaseResp) bool {
 type CreateTaskReq struct {
 	Name   string      `thrift:"name,1" frugal:"1,default,string" json:"name"`
 	Desc   string      `thrift:"desc,2" frugal:"2,default,string" json:"desc"`
-	IsAll  *bool       `thrift:"is_all,3,optional" frugal:"3,optional,bool" json:"is_all,omitempty"`
+	IsAll  bool        `thrift:"is_all,3" frugal:"3,default,bool" json:"is_all"`
 	People *TaskPeople `thrift:"people,4" frugal:"4,default,TaskPeople" json:"people"`
 }
 
@@ -1141,13 +1125,8 @@ func (p *CreateTaskReq) GetDesc() (v string) {
 	return p.Desc
 }
 
-var CreateTaskReq_IsAll_DEFAULT bool
-
 func (p *CreateTaskReq) GetIsAll() (v bool) {
-	if !p.IsSetIsAll() {
-		return CreateTaskReq_IsAll_DEFAULT
-	}
-	return *p.IsAll
+	return p.IsAll
 }
 
 var CreateTaskReq_People_DEFAULT *TaskPeople
@@ -1164,7 +1143,7 @@ func (p *CreateTaskReq) SetName(val string) {
 func (p *CreateTaskReq) SetDesc(val string) {
 	p.Desc = val
 }
-func (p *CreateTaskReq) SetIsAll(val *bool) {
+func (p *CreateTaskReq) SetIsAll(val bool) {
 	p.IsAll = val
 }
 func (p *CreateTaskReq) SetPeople(val *TaskPeople) {
@@ -1176,10 +1155,6 @@ var fieldIDToName_CreateTaskReq = map[int16]string{
 	2: "desc",
 	3: "is_all",
 	4: "people",
-}
-
-func (p *CreateTaskReq) IsSetIsAll() bool {
-	return p.IsAll != nil
 }
 
 func (p *CreateTaskReq) IsSetPeople() bool {
@@ -1290,11 +1265,11 @@ func (p *CreateTaskReq) ReadField2(iprot thrift.TProtocol) error {
 }
 func (p *CreateTaskReq) ReadField3(iprot thrift.TProtocol) error {
 
-	var _field *bool
+	var _field bool
 	if v, err := iprot.ReadBool(); err != nil {
 		return err
 	} else {
-		_field = &v
+		_field = v
 	}
 	p.IsAll = _field
 	return nil
@@ -1384,16 +1359,14 @@ WriteFieldEndError:
 }
 
 func (p *CreateTaskReq) writeField3(oprot thrift.TProtocol) (err error) {
-	if p.IsSetIsAll() {
-		if err = oprot.WriteFieldBegin("is_all", thrift.BOOL, 3); err != nil {
-			goto WriteFieldBeginError
-		}
-		if err := oprot.WriteBool(*p.IsAll); err != nil {
-			return err
-		}
-		if err = oprot.WriteFieldEnd(); err != nil {
-			goto WriteFieldEndError
-		}
+	if err = oprot.WriteFieldBegin("is_all", thrift.BOOL, 3); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteBool(p.IsAll); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
 	}
 	return nil
 WriteFieldBeginError:
@@ -1462,14 +1435,9 @@ func (p *CreateTaskReq) Field2DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *CreateTaskReq) Field3DeepEqual(src *bool) bool {
+func (p *CreateTaskReq) Field3DeepEqual(src bool) bool {
 
-	if p.IsAll == src {
-		return true
-	} else if p.IsAll == nil || src == nil {
-		return false
-	}
-	if *p.IsAll != *src {
+	if p.IsAll != src {
 		return false
 	}
 	return true

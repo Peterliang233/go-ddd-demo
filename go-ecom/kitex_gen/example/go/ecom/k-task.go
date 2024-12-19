@@ -170,12 +170,12 @@ func (p *TaskItem) FastReadField3(buf []byte) (int, error) {
 func (p *TaskItem) FastReadField4(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *bool
+	var _field bool
 	if v, l, err := thrift.Binary.ReadBool(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
-		_field = &v
+		_field = v
 	}
 	p.IsAll = _field
 	return offset, nil
@@ -246,10 +246,8 @@ func (p *TaskItem) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *TaskItem) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetIsAll() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.BOOL, 4)
-		offset += thrift.Binary.WriteBool(buf[offset:], *p.IsAll)
-	}
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.BOOL, 4)
+	offset += thrift.Binary.WriteBool(buf[offset:], p.IsAll)
 	return offset
 }
 
@@ -283,10 +281,8 @@ func (p *TaskItem) field3Length() int {
 
 func (p *TaskItem) field4Length() int {
 	l := 0
-	if p.IsSetIsAll() {
-		l += thrift.Binary.FieldBeginLength()
-		l += thrift.Binary.BoolLength()
-	}
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.BoolLength()
 	return l
 }
 
@@ -852,12 +848,12 @@ func (p *CreateTaskReq) FastReadField2(buf []byte) (int, error) {
 func (p *CreateTaskReq) FastReadField3(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *bool
+	var _field bool
 	if v, l, err := thrift.Binary.ReadBool(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
-		_field = &v
+		_field = v
 	}
 	p.IsAll = _field
 	return offset, nil
@@ -919,10 +915,8 @@ func (p *CreateTaskReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *CreateTaskReq) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetIsAll() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.BOOL, 3)
-		offset += thrift.Binary.WriteBool(buf[offset:], *p.IsAll)
-	}
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.BOOL, 3)
+	offset += thrift.Binary.WriteBool(buf[offset:], p.IsAll)
 	return offset
 }
 
@@ -949,10 +943,8 @@ func (p *CreateTaskReq) field2Length() int {
 
 func (p *CreateTaskReq) field3Length() int {
 	l := 0
-	if p.IsSetIsAll() {
-		l += thrift.Binary.FieldBeginLength()
-		l += thrift.Binary.BoolLength()
-	}
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.BoolLength()
 	return l
 }
 

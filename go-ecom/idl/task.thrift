@@ -6,7 +6,7 @@ struct TaskItem {
     1: i64 id
     2: string name
     3: string description
-    4: optional bool is_all
+    4: bool is_all
     5: TaskPeople target
 }
 
@@ -29,7 +29,7 @@ struct GetTaskResp {
 struct CreateTaskReq {
     1: string name
     2: string desc
-    3: optional bool is_all
+    3: bool is_all
     4: TaskPeople people
 }
 
